@@ -516,7 +516,7 @@ static bool cp2102n_set_manuf(struct cp2102n_config* cfg, const char *name)
 
 static bool cp2102n_set_leds_enabled(struct cp2102n_config* cfg, bool new_leds_enabled)
 {
-  uint8_t led_settings_bitmask = 0b00001100;
+  uint8_t led_settings_bitmask = 0b00001101;// 0b00001100;
   if (new_leds_enabled)
   {
     cfg->portSettings.gpioControl[1] |= led_settings_bitmask;
@@ -595,7 +595,7 @@ void syntax (void)
 "  -C manufact.  Program the given manufacturer name (CP2101n only)\n"
 "  -S serial     Program the given serial string\n"
 "  -t 0/1        Toggle between internal and user specified serial (CP2101n only)\n"
-"  -L 0/1        Enable TX/RX led output (CP2101n only)\n"
+"  -L 0/1        Enable TX/RX led output (CP2102n only)\n"
 "  -I 0/1        Toggle between 100mA and 500mA usb power descriptor. This flag works only in conjunction with -x flag.\n"
 "  -H            Print a hexdump of the current device's config\n"
 "  -x            Enable this tool's experimental features. See README.\n"
@@ -603,6 +603,8 @@ void syntax (void)
 "Unless the -d option is used, the first found CP210x device is used.\n"
 "If no programming options are used, the current values are printed.\n"
 "\n"
+"Compile: run '$ make' on the top level\n"
+"Example\n: $ sudo ./cp210x-cfg -L 1\n Then, restart the IC (power off and on again)"
   ); 
 }
 
